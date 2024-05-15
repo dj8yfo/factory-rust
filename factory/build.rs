@@ -52,8 +52,9 @@ fn main() {
             .unwrap()
             .to_string_lossy()
             .to_string();
+        // TODO: replace `cargo:` -> `cargo::`, as the former is being deprecated since rust 1.77
         println!(
-            "cargo::rustc-env={}={}",
+            "cargo:rustc-env={}={}",
             "BUILD_RS_SUB_BUILD_ARTIFACT", stub_path
         );
         return;
@@ -69,12 +70,12 @@ fn main() {
     };
     pretty_print(&artifact);
     println!(
-        "cargo::rustc-env={}={}",
+        "cargo:rustc-env={}={}",
         "BUILD_RS_SUB_BUILD_ARTIFACT",
         artifact.path.into_string()
     );
-    println!("cargo::rerun-if-changed=../product-donation");
-    println!("cargo::rerun-if-changed=../Cargo.toml");
+    println!("cargo:rerun-if-changed=../product-donation");
+    println!("cargo:rerun-if-changed=../Cargo.toml");
 }
 
 /// `CARGO_NEAR_BUILD_COMMAND` and `CARGO_NEAR_CONTRACT_PATH`
