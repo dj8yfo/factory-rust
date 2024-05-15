@@ -20,6 +20,13 @@ struct SubBuildArguments<'a> {
     ///
     /// if this path relative, the base is `workdir` field
     distinct_target_dir: &'a str,
+    /// skipping emitting output sub-build `*.wasm` may be helpful when
+    /// interacting with `rust-analyzer/flycheck`,
+    /// `cargo check`, `bacon` and other dev-tools, running `cargo test --workspace`, etc.
+    skipped_profiles: Vec<&'a str>,
+    /// path of stub file, where a placeholder empty `wasm` output is emitted to
+    stub_path: &'a str,
+    rerun_if_changed_list: Vec<&'a str>,
 }
 
 fn create_stub_file(out_path: &std::path::Path) {
@@ -30,22 +37,43 @@ fn create_stub_file(out_path: &std::path::Path) {
         .open(&out_path)
         .expect("unable to open/create data file");
 }
-
 fn main() {
-    let profile = std::env::var("PROFILE").unwrap_or("unknown".to_string());
+    let workdir = "../product-donation";
+    let args = SubBuildArguments {
+        workdir,
+        metadata_contract_path: "product-donation",
+        distinct_target_dir: "../target/sub-build-product-donation",
+        skipped_profiles: vec!["debug"],
+        stub_path: "../target/stub.bin",
+        rerun_if_changed_list: vec!["../product-donation", "../Cargo.toml"],
+    };
+    let env_variable = sub_build_helper(args).expect("sub build error");
+    print_warn!(
+        "Path to result artifact of build in `{}` is exported to `{}`",
+        workdir,
+        env_variable,
+    );
+}
+
+fn sub_build_helper(args: SubBuildArguments) -> Result<String, Box<dyn std::error::Error>> {
+    let profile = std::env::var("PROFILE").unwrap_or("unbeknown".to_string());
     print_warn!("`PROFILE` env set to `{}`", profile);
 
-    // NOTE: skipping emitting output sub-build `*.wasm` may be helpful when interacting with `rust-analyzer/flycheck`,
-    // `cargo check`, `bacon` and other dev-tools, running `cargo test --workspace`, etc.
-    if profile == "debug" {
-        print_warn!("No need to build factory's product contract during `debug` profile build");
+    if args.skipped_profiles.contains(&profile.as_str()) {
+        print_warn!(
+            "No need to build factory's product contract during `{}` profile build",
+            profile
+        );
     }
     if std::env::var(BUILD_RS_ABI_STEP_HINT_ENV_KEY).is_ok() {
         print_warn!("No need to build factory's product contract during ABI generation step");
     }
 
-    if std::env::var(BUILD_RS_ABI_STEP_HINT_ENV_KEY).is_ok() || profile == "debug" {
-        let stub_path = std::path::Path::new("../target/stub.bin");
+    let result_env = "BUILD_RS_SUB_BUILD_ARTIFACT".to_string();
+    if std::env::var(BUILD_RS_ABI_STEP_HINT_ENV_KEY).is_ok()
+        || args.skipped_profiles.contains(&profile.as_str())
+    {
+        let stub_path = std::path::Path::new(&args.stub_path);
         create_stub_file(stub_path);
         let stub_path = stub_path
             .canonicalize()
@@ -53,29 +81,21 @@ fn main() {
             .to_string_lossy()
             .to_string();
         // TODO: replace `cargo:` -> `cargo::`, as the former is being deprecated since rust 1.77
-        println!(
-            "cargo:rustc-env={}={}",
-            "BUILD_RS_SUB_BUILD_ARTIFACT", stub_path
-        );
-        return;
+        print_warn!("Sub-build empty artifact stub written to: `{}`", stub_path);
+        println!("cargo:rustc-env={}={}", result_env, stub_path);
+        return Ok(result_env);
     }
-    let artifact = {
-        let args = SubBuildArguments {
-            workdir: "../product-donation",
-            metadata_contract_path: "product-donation",
-            distinct_target_dir: "../target/sub-build-product-donation",
-        };
-
-        compile_near_artifact(args).expect("problem compiling factory's sub-build")
-    };
-    pretty_print(&artifact);
+    let artifact = compile_near_artifact(&args)?;
+    pretty_print(&artifact)?;
     println!(
         "cargo:rustc-env={}={}",
-        "BUILD_RS_SUB_BUILD_ARTIFACT",
+        result_env,
         artifact.path.into_string()
     );
-    println!("cargo:rerun-if-changed=../product-donation");
-    println!("cargo:rerun-if-changed=../Cargo.toml");
+    for path in args.rerun_if_changed_list {
+        println!("cargo:rerun-if-changed={}", path);
+    }
+    Ok(result_env)
 }
 
 /// `CARGO_NEAR_BUILD_COMMAND` and `CARGO_NEAR_CONTRACT_PATH`
@@ -86,7 +106,7 @@ fn main() {
 /// `CARGO_TARGET_DIR` export is needed to avoid attempt to acquire same `target/<profile-path>/.cargo-lock`
 /// as the `cargo` process, which is running the build-script
 fn compile_near_artifact(
-    args: SubBuildArguments,
+    args: &SubBuildArguments,
 ) -> Result<CompilationArtifact, Box<dyn std::error::Error>> {
     let _tmp_workdir = tmp_env::set_current_dir(args.workdir)?;
 
@@ -106,10 +126,8 @@ fn compile_near_artifact(
     Ok(artifact)
 }
 
-fn pretty_print(artifact: &CompilationArtifact) {
-    let hash = artifact
-        .compute_hash()
-        .expect("problem hashing the artifact");
+fn pretty_print(artifact: &CompilationArtifact) -> Result<(), Box<dyn std::error::Error>> {
+    let hash = artifact.compute_hash()?;
 
     print_warn!("");
     print_warn!("");
@@ -120,4 +138,5 @@ fn pretty_print(artifact: &CompilationArtifact) {
     print_warn!("sub-build artifact hashsum: {}", hash);
     print_warn!("");
     print_warn!("");
+    Ok(())
 }
