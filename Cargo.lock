@@ -780,7 +780,7 @@ dependencies = [
 [[package]]
 name = "cargo-near"
 version = "0.6.2"
-source = "git+https://github.com/dj8yfo/cargo-near.git?branch=source-scan-factory-exports#c170857330661673603d982b76b0eab13e9d0dda"
+source = "git+https://github.com/dj8yfo/cargo-near.git?branch=source-scan-fct-scratch-mini-clap#91ffe0dfbda5b69b62896503bae0461f02c45b6f"
 dependencies = [
  "atty",
  "bs58 0.4.0",
@@ -1555,9 +1555,9 @@ dependencies = [
 
 [[package]]
 name = "either"
-version = "1.11.0"
+version = "1.12.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a47c1c47d2f5964e29c61246e81db715514cd532db6b5116a25ea3c03d6780a2"
+checksum = "3dca9240753cf90908d7e4aac30f630662b02aebaa1b58a3cadabdb23385b58b"
 
 [[package]]
 name = "elementtree"
