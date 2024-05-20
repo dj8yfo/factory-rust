@@ -16,7 +16,8 @@ source_code_git_url = "https://github.com/dj8yfo/factory-rust.git"
 
 [build-dependencies]
 cargo-near = { version = "0.6.2", git = "https://github.com/dj8yfo/cargo-near.git", branch = "source-scan-factory-exports" }
-tmp_env = "0.1.1"
+env_logger = "0.9"
+log = "0.4"
 
 [dependencies]
 near-sdk = { workspace = true, features = ["unstable"] }

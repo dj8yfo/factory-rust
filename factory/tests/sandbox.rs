@@ -1,11 +1,16 @@
+use cargo_near::BuildOpts;
 use near_workspaces::types::{AccountId, KeyType, NearToken, SecretKey};
 use serde_json::json;
 
 #[tokio::test]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
+    let _e = env_logger::try_init();
     let sandbox = near_workspaces::sandbox().await?;
-    std::fs::create_dir_all("../target/near/factory")?;
-    let contract_wasm = near_workspaces::compile_project("./").await?;
+    let artifact = cargo_near::run_build(BuildOpts::new(
+        false, false, false, false, false, None, None, None, false, None,
+    ))?;
+ 
+    let contract_wasm = std::fs::read(artifact.path)?;
     let contract = sandbox.dev_deploy(&contract_wasm).await?;
 
     let alice = sandbox
@@ -54,9 +59,13 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
 #[tokio::test]
 async fn test_too_low_deposit() -> Result<(), Box<dyn std::error::Error>> {
+    let _e = env_logger::try_init();
     let sandbox = near_workspaces::sandbox().await?;
-    std::fs::create_dir_all("../target/near/factory")?;
-    let contract_wasm = near_workspaces::compile_project("./").await?;
+    let artifact = cargo_near::run_build(BuildOpts::new(
+        false, false, false, false, false, None, None, None, false, None,
+    ))?;
+ 
+    let contract_wasm = std::fs::read(artifact.path)?;
     let contract = sandbox.dev_deploy(&contract_wasm).await?;
 
     let alice = sandbox

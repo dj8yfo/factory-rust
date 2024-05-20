@@ -1735,10 +1735,10 @@ version = "0.1.0"
 dependencies = [
  "cargo-near 0.6.2",
  "env_logger",
+ "log",
  "near-sdk",
  "near-workspaces",
  "serde_json",
- "tmp_env",
  "tokio",
 ]
 
