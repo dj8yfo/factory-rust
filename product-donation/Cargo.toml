@@ -8,8 +8,8 @@ repository.workspace = true
 crate-type = ["cdylib", "rlib"]
 
 [package.metadata.near.reproducible_build]
-image = "dj8yfo/sourcescan:0.x.x-dev-cargo-near-factory"
-image_digest = "sha256:7747214ccb8d5a089fab4e6cc80ddf5b60f6729632f6388c19c5ca01e7ec9868"
+image = "dj8yfo/sourcescan:0.x.x-dev-cargo-near-factory-2"
+image_digest = "sha256:a1341785c2cd7e048f72750b168d6ef1a6c256b7c63034b98f16ba1c178d2ce0"
 container_build_command = "cargo near build"
 source_code_git_url = "https://github.com/dj8yfo/factory-rust.git"
 

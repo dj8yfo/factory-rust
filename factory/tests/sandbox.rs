@@ -6,9 +6,7 @@ use serde_json::json;
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let _e = env_logger::try_init();
     let sandbox = near_workspaces::sandbox().await?;
-    let artifact = cargo_near::run_build(BuildOpts::new(
-        false, false, false, false, false, None, None, None, false, None,
-    ))?;
+    let artifact = cargo_near::build(BuildOpts::default())?;
  
     let contract_wasm = std::fs::read(artifact.path)?;
     let contract = sandbox.dev_deploy(&contract_wasm).await?;
@@ -61,9 +59,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 async fn test_too_low_deposit() -> Result<(), Box<dyn std::error::Error>> {
     let _e = env_logger::try_init();
     let sandbox = near_workspaces::sandbox().await?;
-    let artifact = cargo_near::run_build(BuildOpts::new(
-        false, false, false, false, false, None, None, None, false, None,
-    ))?;
+    let artifact = cargo_near::build(BuildOpts::default())?;
  
     let contract_wasm = std::fs::read(artifact.path)?;
     let contract = sandbox.dev_deploy(&contract_wasm).await?;
