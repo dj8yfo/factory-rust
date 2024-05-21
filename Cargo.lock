@@ -780,7 +780,7 @@ dependencies = [
 [[package]]
 name = "cargo-near"
 version = "0.6.2"
-source = "git+https://github.com/dj8yfo/cargo-near.git?branch=source-scan-factory-exports#210e8e31cae784fda54bc6f455b1c566fc8c69e6"
+source = "git+https://github.com/dj8yfo/cargo-near.git?branch=source-scan-factory-exports#1eb9f3786abfd06e5efc3d081cc32415ee6264e4"
 dependencies = [
  "atty",
  "bs58 0.4.0",
@@ -3655,9 +3655,9 @@ checksum = "ff011a302c396a5197692431fc1948019154afc178baf7d8e37367442a4601cf"
 
 [[package]]
 name = "openssl-src"
-version = "300.2.3+3.2.1"
+version = "300.3.0+3.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5cff92b6f71555b61bb9315f7c64da3ca43d87531622120fea0195fc761b4843"
+checksum = "eba8804a1c5765b18c4b3f907e6897ebabeedebc9830e1a0046c4a4cf44663e1"
 dependencies = [
  "cc",
 ]

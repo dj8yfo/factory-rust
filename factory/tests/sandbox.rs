@@ -7,7 +7,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let _e = env_logger::try_init();
     let sandbox = near_workspaces::sandbox().await?;
     let artifact = cargo_near::build(BuildOpts::default())?;
- 
+
     let contract_wasm = std::fs::read(artifact.path)?;
     let contract = sandbox.dev_deploy(&contract_wasm).await?;
 
@@ -60,7 +60,7 @@ async fn test_too_low_deposit() -> Result<(), Box<dyn std::error::Error>> {
     let _e = env_logger::try_init();
     let sandbox = near_workspaces::sandbox().await?;
     let artifact = cargo_near::build(BuildOpts::default())?;
- 
+
     let contract_wasm = std::fs::read(artifact.path)?;
     let contract = sandbox.dev_deploy(&contract_wasm).await?;
 
