@@ -18,5 +18,5 @@ fn main() {
             stub_path: Some("../target/stub.bin"),
         },
     };
-    cargo_near::build_extended(opts).expect("sub build error");
+    cargo_near::build_extended(opts).expect("sub-contract build error");
 }
