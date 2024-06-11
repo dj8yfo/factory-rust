@@ -5,7 +5,7 @@ fn main() {
 
     let opts = cargo_near::BuildOptsExtended {
         workdir: "../product-donation",
-        env: vec![("CARGO_NEAR_CONTRACT_PATH", "product-donation")], // unix path of target contract from root of repo
+        env: vec![("NEP330_BUILD_INFO_CONTRACT_PATH", "product-donation")], // unix path of target contract from root of repo
         build_opts: cargo_near::BuildOpts::default(),
         build_script_opts: BuildScriptOpts {
             result_env_key: Some("BUILD_RS_SUB_BUILD_ARTIFACT_1"),
