@@ -75,15 +75,15 @@ impl Contract {
     ) -> bool {
         match create_deploy_result {
             Ok(_result) => {
-                log!(format!("Correctly created and deployed to {account}"));
+                log!("{}", format!("Correctly created and deployed to {account}"));
                 return true;
             }
             Err(returned_err) => {
-                log!(format!("Bad error happened {:?}", returned_err));
+                log!("{}", format!("Bad error happened {:?}", returned_err));
             }
         }
 
-        log!(format!(
+        log!("{}", format!(
             "Error creating {account}, returning {attached} to {user}"
         ));
         Promise::new(user).transfer(attached);
