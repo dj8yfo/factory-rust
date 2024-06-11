@@ -1,10 +1,10 @@
 import? 'local.just'
 
-factory_contract := "repro-fct-15.testnet"
-child_deploy_signer := "child-deploy-signer-4.testnet"
+factory_contract := "repro-fct-16.testnet"
+child_deploy_signer := "child-deploy-signer-5.testnet"
 product_contract_name := "donation-product"
 product_from_factory_contract := product_contract_name + "." + factory_contract
-product_standalone_contract := "repro-fct-product-15.testnet"
+product_standalone_contract := "repro-fct-product-16.testnet"
 factory_call_payload := "{ \"name\": \"" + product_contract_name + "\", \"beneficiary\": \"donatello2.testnet\"}"
 
 create-factory-dev-acc:
