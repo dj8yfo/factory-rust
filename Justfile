@@ -1,6 +1,6 @@
 import? 'local.just'
 
-factory_contract := "repro-fct-14.testnet"
+factory_contract := "repro-fct-15.testnet"
 
 # cleanup in symlinked dir
 create-factory-dev-acc:
