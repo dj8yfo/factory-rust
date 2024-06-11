@@ -1,7 +1,7 @@
 [package]
 name = "factory"
 description = "Factory Contract Example"
-version = "0.1.0"
+version = "0.1.13"
 edition = "2021"
 repository.workspace = true
 
@@ -9,13 +9,13 @@ repository.workspace = true
 crate-type = ["cdylib", "rlib"]
 
 [package.metadata.near.reproducible_build]
-image = "dj8yfo/sourcescan:0.x.x-dev-cargo-near-factory-2"
-image_digest = "sha256:a1341785c2cd7e048f72750b168d6ef1a6c256b7c63034b98f16ba1c178d2ce0"
+image = "dj8yfo/sourcescan:0.x.x-dev-cargo-near-finalization"
+image_digest = "sha256:088406ca278144a079f10d110b61debd4f72f123cd99de91fc53a4c8c372d8c2"
 container_build_command = "cargo near build --no-default-features --features near-sdk/expensive-debug"
 source_code_git_url = "https://github.com/dj8yfo/factory-rust.git"
 
 [build-dependencies]
-cargo-near = { version = "0.6.2", git = "https://github.com/dj8yfo/cargo-near.git", branch = "source-scan-factory-exports" }
+cargo-near = { version = "0.6.2", git = "https://github.com/dj8yfo/cargo-near.git", branch = "source-scan-docker-checks2" }
 env_logger = "0.9"
 log = "0.4"
 
@@ -23,7 +23,7 @@ log = "0.4"
 near-sdk = { workspace = true, features = ["unstable"] }
 
 [dev-dependencies]
-cargo-near = { version = "0.6.2", git = "https://github.com/dj8yfo/cargo-near.git", branch = "source-scan-factory-exports" }
+cargo-near = { version = "0.6.2", git = "https://github.com/dj8yfo/cargo-near.git", branch = "source-scan-docker-checks2" }
 near-sdk = { workspace = true, features = ["unit-testing"] }
 near-workspaces = { version = "0.10.0", features = ["unstable"] }
 tokio = { version = "1.12.0", features = ["full"] }
