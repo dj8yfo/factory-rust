@@ -10,7 +10,7 @@ crate-type = ["cdylib", "rlib"]
 
 [package.metadata.near.reproducible_build]
 image = "dj8yfo/sourcescan:0.x.x-dev-cargo-near-finalization"
-image_digest = "sha256:088406ca278144a079f10d110b61debd4f72f123cd99de91fc53a4c8c372d8c2"
+image_digest = "sha256:3b408688d7ce16d90fb79d35da98fe163e7cac6db84441b5bdc2108d8d37d0ae"
 container_build_command = "cargo near build --no-default-features --features near-sdk/expensive-debug"
 source_code_git_url = "https://github.com/dj8yfo/factory-rust.git"
 

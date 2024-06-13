@@ -760,7 +760,7 @@ dependencies = [
 [[package]]
 name = "cargo-near"
 version = "0.6.2"
-source = "git+https://github.com/dj8yfo/cargo-near.git?branch=source-scan-docker-checks2#dde5ec85a4077bb3661d630e4869fae8c5c527c0"
+source = "git+https://github.com/dj8yfo/cargo-near.git?branch=source-scan-docker-checks2#5dbb2ebe86f2107ea7255928a00af4ac00349ccc"
 dependencies = [
  "atty",
  "bs58 0.4.0",
@@ -2201,9 +2201,9 @@ dependencies = [
 
 [[package]]
 name = "httparse"
-version = "1.9.2"
+version = "1.9.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "9f3935c160d00ac752e09787e6e6bfc26494c2183cc922f1bc678a60d4733bc2"
+checksum = "d0e7a4dd27b9476dc40cb050d3632d3bba3a70ddbff012285f7f8559a1e7e545"
 
 [[package]]
 name = "httpdate"
@@ -3352,7 +3352,7 @@ dependencies = [
 [[package]]
 name = "near-sdk"
 version = "5.1.0"
-source = "git+https://github.com/dj8yfo/near-sdk-rs.git?branch=add_contract_metadata#223917ba564aac3e3fb8a554397ed1cd2d5dd613"
+source = "git+https://github.com/dj8yfo/near-sdk-rs.git?branch=add_contract_metadata#8d0c65f9a908434b8c256c5e5ba50e5c64b77ad0"
 dependencies = [
  "base64 0.21.7",
  "borsh 1.5.1",
@@ -3376,7 +3376,7 @@ dependencies = [
 [[package]]
 name = "near-sdk-macros"
 version = "5.1.0"
-source = "git+https://github.com/dj8yfo/near-sdk-rs.git?branch=add_contract_metadata#223917ba564aac3e3fb8a554397ed1cd2d5dd613"
+source = "git+https://github.com/dj8yfo/near-sdk-rs.git?branch=add_contract_metadata#8d0c65f9a908434b8c256c5e5ba50e5c64b77ad0"
 dependencies = [
  "Inflector",
  "darling",
@@ -3415,7 +3415,7 @@ checksum = "855fd5540e3b4ff6fedf12aba2db1ee4b371b36f465da1363a6d022b27cb43b8"
 [[package]]
 name = "near-sys"
 version = "0.2.1"
-source = "git+https://github.com/dj8yfo/near-sdk-rs.git?branch=add_contract_metadata#223917ba564aac3e3fb8a554397ed1cd2d5dd613"
+source = "git+https://github.com/dj8yfo/near-sdk-rs.git?branch=add_contract_metadata#8d0c65f9a908434b8c256c5e5ba50e5c64b77ad0"
 
 [[package]]
 name = "near-token"

@@ -34,4 +34,3 @@ deploy-product-standalone: create-standalone-product-dev-acc
 
 test-meta-product-standalone:
     near contract call-function as-read-only {{product_standalone_contract}} contract_source_metadata json-args {} network-config testnet now
-
