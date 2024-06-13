@@ -1,7 +1,7 @@
 import? 'local.just'
 
 factory_contract := "repro-fct-17.testnet"
-factory_no_docker_contract := "repro-fct-no-docker-17.testnet"
+factory_no_docker_contract := "repro-fct-no-docker-18.testnet"
 child_deploy_signer := "child-deploy-signer-6.testnet"
 product_contract_name := "donation-product"
 product_from_factory_contract := product_contract_name + "." + factory_contract
@@ -21,7 +21,7 @@ create-factory-no-docker-dev-acc:
     near account create-account sponsor-by-faucet-service {{factory_no_docker_contract}} autogenerate-new-keypair save-to-keychain network-config testnet create
 
 deploy-factory-no-docker: create-factory-no-docker-dev-acc
-    cd factory && cargo near deploy {{factory_no_docker_contract}} without-init-call network-config testnet sign-with-keychain send
+    cd factory && cargo near deploy --no-docker {{factory_no_docker_contract}} without-init-call network-config testnet sign-with-keychain send
 
 test-meta-factory-no-docker:
     near contract call-function as-read-only {{factory_no_docker_contract}} contract_source_metadata json-args {} network-config testnet now
