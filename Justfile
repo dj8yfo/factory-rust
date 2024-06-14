@@ -28,6 +28,7 @@ deploy-from-factory: create-child-deploy-signer-acc
 
 test-meta-product:
     near contract call-function as-read-only {{product_from_factory_contract}} contract_source_metadata json-args {} network-config testnet now
+    near contract download-abi {{product_from_factory_contract}} save-to-file deployed.abi.json network-config testnet now
 
 create-standalone-product-dev-acc:
     near account create-account sponsor-by-faucet-service {{product_standalone_contract}} autogenerate-new-keypair save-to-keychain network-config testnet create
