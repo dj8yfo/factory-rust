@@ -760,7 +760,7 @@ dependencies = [
 [[package]]
 name = "cargo-near"
 version = "0.6.2"
-source = "git+https://github.com/dj8yfo/cargo-near.git?branch=source-scan-docker-checks2#31d087af465e07a4a609e653c718225d22773fa3"
+source = "git+https://github.com/dj8yfo/cargo-near.git?branch=source-scan-docker-checks2#787cfbd3d2c1d915c727913c2601779e5adaa007"
 dependencies = [
  "atty",
  "bs58 0.4.0",
