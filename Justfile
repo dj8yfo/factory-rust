@@ -1,30 +1,23 @@
 import? 'local.just'
+default_args := ''
 
-factory_contract := "repro-fct-17.testnet"
-factory_no_docker_contract := "repro-fct-no-docker-18.testnet"
-child_deploy_signer := "child-deploy-signer-6.testnet"
+factory_contract := "repro-fct-18.testnet"
+child_deploy_signer := "child-deploy-signer-7.testnet"
 product_contract_name := "donation-product"
 product_from_factory_contract := product_contract_name + "." + factory_contract
-product_standalone_contract := "repro-fct-product-17.testnet"
+product_standalone_contract := "repro-fct-product-18.testnet"
 factory_call_payload := "{ \"name\": \"" + product_contract_name + "\", \"beneficiary\": \"donatello2.testnet\"}"
 
 create-factory-dev-acc:
     near account create-account sponsor-by-faucet-service {{factory_contract}} autogenerate-new-keypair save-to-keychain network-config testnet create
 
-deploy-factory: create-factory-dev-acc
-    cd factory && cargo near deploy {{factory_contract}} without-init-call network-config testnet sign-with-keychain send
+# additional_args can most often be `--no-docker`
+deploy-factory additional_args=default_args: create-factory-dev-acc
+    cd factory && cargo near deploy {{additional_args}} {{factory_contract}} without-init-call network-config testnet sign-with-keychain send
 
 test-meta-factory:
     near contract call-function as-read-only {{factory_contract}} contract_source_metadata json-args {} network-config testnet now
-
-create-factory-no-docker-dev-acc:
-    near account create-account sponsor-by-faucet-service {{factory_no_docker_contract}} autogenerate-new-keypair save-to-keychain network-config testnet create
-
-deploy-factory-no-docker: create-factory-no-docker-dev-acc
-    cd factory && cargo near deploy --no-docker {{factory_no_docker_contract}} without-init-call network-config testnet sign-with-keychain send
-
-test-meta-factory-no-docker:
-    near contract call-function as-read-only {{factory_no_docker_contract}} contract_source_metadata json-args {} network-config testnet now
+    near contract download-abi {{factory_contract}} save-to-file deployed.abi.json network-config testnet now
 
 create-child-deploy-signer-acc:
     near account create-account sponsor-by-faucet-service {{child_deploy_signer}} autogenerate-new-keypair save-to-keychain network-config testnet create
@@ -44,3 +37,4 @@ deploy-product-standalone: create-standalone-product-dev-acc
 
 test-meta-product-standalone:
     near contract call-function as-read-only {{product_standalone_contract}} contract_source_metadata json-args {} network-config testnet now
+
