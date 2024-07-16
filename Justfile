@@ -39,3 +39,8 @@ deploy-product-standalone: create-standalone-product-dev-acc
 test-meta-product-standalone:
     near contract call-function as-read-only {{product_standalone_contract}} contract_source_metadata json-args {} network-config testnet now
 
+show-wasm-hashes:
+    near contract download-wasm {{factory_contract}} save-to-file {{factory_contract}}.wasm network-config testnet now
+    near contract download-wasm {{product_from_factory_contract}} save-to-file {{product_from_factory_contract}}.wasm network-config testnet now
+    near contract download-wasm {{product_standalone_contract}} save-to-file {{product_standalone_contract}}.wasm network-config testnet now
+    sha256sum *.wasm
