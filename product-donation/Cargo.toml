@@ -11,9 +11,9 @@ crate-type = ["cdylib", "rlib"]
 # in https://github.com/near/NEPs/blob/master/neps/nep-0330.md 
 [package.metadata.near.reproducible_build]
 # docker image, descriptor of build environment
-image = "dj8yfo/sourcescan:0.x.x-dev-git-pull-179-ccache-cut-single" # ERROR: replace with tag in `sourcescan/cargo-near` 
+image = "dj8yfo/sourcescan:0.x.x-dev-git-artif-0.13.0" # ERROR: replace with tag in `sourcescan/cargo-near` 
 # tag after colon above serves only descriptive purpose; image is identified by digest
-image_digest = "sha256:b46ea2c26ef5762c0675aa3563bd38aa045366c27a9918867a2455c83c8b046a"
+image_digest = "sha256:396d1e0ea8bd720e2025317aed61d72c58d3ade903069584eb5db31fadedb3d0"
 # build command inside of docker container 
 # if docker image from default gallery is used https://hub.docker.com/r/sourcescan/cargo-near/tags,
 # the command may be any combination of flags of `cargo-near`,
