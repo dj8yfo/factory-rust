@@ -22,7 +22,7 @@ image_digest = "sha256:b46ea2c26ef5762c0675aa3563bd38aa045366c27a9918867a2455c83
 container_build_command = ["cargo", "near", "build"]
 
 [build-dependencies]
-cargo-near = { version = "0.6.3", git = "https://github.com/dj8yfo/cargo-near.git", branch = "handle_missing_meta" }
+cargo-near = { version = "0.6.3", git = "https://github.com/dj8yfo/cargo-near.git", branch = "version_mismatch_coerce_warn_fail" }
 env_logger = "0.9"
 log = "0.4"
 
@@ -30,7 +30,7 @@ log = "0.4"
 near-sdk = { workspace = true, features = ["unstable"] }
 
 [dev-dependencies]
-cargo-near = { version = "0.6.3", git = "https://github.com/dj8yfo/cargo-near.git", branch = "handle_missing_meta" }
+cargo-near = { version = "0.6.3", git = "https://github.com/dj8yfo/cargo-near.git", branch = "version_mismatch_coerce_warn_fail" }
 near-sdk = { workspace = true, features = ["unit-testing"] }
 near-workspaces = { version = "0.10.0", features = ["unstable"] }
 tokio = { version = "1.12.0", features = ["full"] }
