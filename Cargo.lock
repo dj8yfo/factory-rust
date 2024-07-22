@@ -818,7 +818,7 @@ dependencies = [
 [[package]]
 name = "cargo-near"
 version = "0.6.3"
-source = "git+https://github.com/dj8yfo/cargo-near.git?branch=version_mismatch_coerce_warn_fail#9c25f1b4fe3b32ce7d3b67484767702376d3d666"
+source = "git+https://github.com/dj8yfo/cargo-near.git?branch=version_mismatch_coerce_warn_fail#56843397dd8a894ce91c11a6786165c62d4a5fd7"
 dependencies = [
  "atty",
  "bs58 0.5.1",
