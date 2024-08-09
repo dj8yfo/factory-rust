@@ -11,7 +11,7 @@ fn main() {
             result_env_key: Some("BUILD_RS_SUB_BUILD_ARTIFACT_1"),
             rerun_if_changed_list: vec!["../product-donation", "../Cargo.toml", "../Cargo.lock"],
             build_skipped_when_env_is: vec![
-                // ("PROFILE", "debug"),
+                ("PROFILE", "debug"),
                 ("CARGO_NEAR_ABI_GENERATION", "true"),
             ],
             distinct_target_dir: Some("../target/build-rs-product-donation"),
