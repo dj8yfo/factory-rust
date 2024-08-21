@@ -1,15 +1,16 @@
 import? 'local.just'
 default_args := ''
 
-factory_contract := "repro-fct-41.testnet"
-child_deploy_signer := "child-deploy-signer-41.testnet"
+factory_contract := "repro-fct-43.testnet"
+child_deploy_signer := "child-deploy-signer-43.testnet"
 product_contract_name := "donation-product"
 product_from_factory_contract := product_contract_name + "." + factory_contract
-product_standalone_contract := "repro-fct-product-41.testnet"
+product_standalone_contract := "repro-fct-product-43.testnet"
 factory_call_payload := "{ \"name\": \"" + product_contract_name + "\", \"beneficiary\": \"donatello2.testnet\"}"
 
 create-factory-dev-acc:
-    near account create-account sponsor-by-faucet-service {{factory_contract}} autogenerate-new-keypair save-to-keychain network-config testnet create || true
+    # near account create-account sponsor-by-faucet-service {{factory_contract}} autogenerate-new-keypair save-to-keychain network-config testnet create || true
+    near account create-account fund-myself {{factory_contract}} '10 NEAR' autogenerate-new-keypair save-to-keychain sign-as cargo_near_test_workflows.testnet network-config testnet sign-with-keychain send || true
 
 # additional_args can most often be `--no-docker`
 deploy-factory additional_args=default_args: create-factory-dev-acc
@@ -20,7 +21,8 @@ test-meta-factory:
     near contract download-abi {{factory_contract}} save-to-file deployed.abi.json network-config testnet now
 
 create-child-deploy-signer-acc:
-    near account create-account sponsor-by-faucet-service {{child_deploy_signer}} autogenerate-new-keypair save-to-keychain network-config testnet create || true
+    # near account create-account sponsor-by-faucet-service {{child_deploy_signer}} autogenerate-new-keypair save-to-keychain network-config testnet create || true
+    near account create-account fund-myself {{child_deploy_signer}} '10 NEAR' autogenerate-new-keypair save-to-keychain sign-as cargo_near_test_workflows.testnet network-config testnet sign-with-keychain send || true
 
 deploy-from-factory: create-child-deploy-signer-acc
     sleep 30
@@ -31,7 +33,8 @@ test-meta-product:
     near contract download-abi {{product_from_factory_contract}} save-to-file deployed.abi.json network-config testnet now
 
 create-standalone-product-dev-acc:
-    near account create-account sponsor-by-faucet-service {{product_standalone_contract}} autogenerate-new-keypair save-to-keychain network-config testnet create || true
+    # near account create-account sponsor-by-faucet-service {{product_standalone_contract}} autogenerate-new-keypair save-to-keychain network-config testnet create || true
+    near account create-account fund-myself {{product_standalone_contract}} '10 NEAR' autogenerate-new-keypair save-to-keychain sign-as cargo_near_test_workflows.testnet network-config testnet sign-with-keychain send || true
 
 deploy-product-standalone: create-standalone-product-dev-acc
     cd product-donation && cargo near deploy {{product_standalone_contract}} without-init-call network-config testnet sign-with-keychain send
