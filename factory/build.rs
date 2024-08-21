@@ -1,12 +1,12 @@
-use cargo_near::BuildScriptOpts;
+use cargo_near_build::BuildScriptOpts;
 
 fn main() {
     let _e = env_logger::Builder::new().parse_default_env().try_init();
 
-    let opts = cargo_near::BuildOptsExtended {
+    let opts = cargo_near_build::BuildOptsExtended {
         workdir: "../product-donation",
         env: vec![("NEP330_BUILD_INFO_CONTRACT_PATH", "product-donation")], // unix path of target contract from root of repo
-        build_opts: cargo_near::BuildOpts::default(),
+        build_opts: cargo_near_build::BuildOpts::default(),
         build_script_opts: BuildScriptOpts {
             result_env_key: Some("BUILD_RS_SUB_BUILD_ARTIFACT_1"),
             rerun_if_changed_list: vec!["../product-donation", "../Cargo.toml", "../Cargo.lock"],
@@ -18,5 +18,5 @@ fn main() {
             stub_path: Some("../target/stub.bin"),
         },
     };
-    cargo_near::build_extended(opts).expect("sub-contract build error");
+    cargo_near_build::build_extended(opts).expect("sub-contract build error");
 }
