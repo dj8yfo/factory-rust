@@ -3,13 +3,18 @@ use cargo_near_build::extended::BuildScriptOpts;
 fn main() {
     let _e = env_logger::Builder::new().parse_default_env().try_init();
 
+    let regular_build_opts = cargo_near_build::BuildOpts {
+        no_default_features: true,
+        ..Default::default()
+    };
+
     let opts = cargo_near_build::extended::BuildOptsExtended {
         workdir: "../product-donation",
         env: vec![
             // unix path of target contract from root of repo
             (cargo_near_build::env_keys::nep330::CONTRACT_PATH, "product-donation")
         ], 
-        build_opts: cargo_near_build::BuildOpts::default(),
+        build_opts: regular_build_opts,
         build_script_opts: BuildScriptOpts {
             result_env_key: Some("BUILD_RS_SUB_BUILD_ARTIFACT_1"),
             rerun_if_changed_list: vec!["../product-donation", "../Cargo.toml", "../Cargo.lock"],
