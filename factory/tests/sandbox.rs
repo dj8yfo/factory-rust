@@ -1,4 +1,4 @@
-use cargo_near::BuildOpts;
+use cargo_near_build::BuildOpts;
 use near_workspaces::types::{AccountId, KeyType, NearToken, SecretKey};
 use serde_json::json;
 
@@ -6,7 +6,7 @@ use serde_json::json;
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let _e = env_logger::try_init();
     let sandbox = near_workspaces::sandbox().await?;
-    let artifact = cargo_near::build(BuildOpts::default())?;
+    let artifact = cargo_near_build::build(BuildOpts::default())?;
 
     let contract_wasm = std::fs::read(artifact.path)?;
     let contract = sandbox.dev_deploy(&contract_wasm).await?;
@@ -59,7 +59,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 async fn test_too_low_deposit() -> Result<(), Box<dyn std::error::Error>> {
     let _e = env_logger::try_init();
     let sandbox = near_workspaces::sandbox().await?;
-    let artifact = cargo_near::build(BuildOpts::default())?;
+    let artifact = cargo_near_build::build(BuildOpts::default())?;
 
     let contract_wasm = std::fs::read(artifact.path)?;
     let contract = sandbox.dev_deploy(&contract_wasm).await?;
