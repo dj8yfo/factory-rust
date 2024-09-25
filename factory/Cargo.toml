@@ -14,9 +14,9 @@ crate-type = ["cdylib", "rlib"]
 # image from cargo-near pull#198
 [package.metadata.near.reproducible_build]
 # docker image, descriptor of build environment
-image = "dj8yfo/sourcescan:0.x.x-dev-git-pull-198"
+image = ""
 # tag after colon above serves only descriptive purpose; image is identified by digest
-image_digest = "sha256:7ca2f7ae14d00a4884c3231261b342bf0d1ea4903b81e16bf51ba11dca0f8467"
+image_digest = ""
 # build command inside of docker container 
 # if docker image from default gallery is used https://hub.docker.com/r/sourcescan/cargo-near/tags,
 # the command may be any combination of flags of `cargo-near`,
@@ -28,18 +28,18 @@ env_logger = "0.9"
 log = "0.4"
 
 [build-dependencies.cargo-near-build]
-version = "0.1.0"
+version = "0.1.1"
 features = ["build_script"]
-git = "https://github.com/near/cargo-near.git"
-branch = "extract_lib_with_eyre"
+git = "https://github.com/dj8yfo/cargo-near.git"
+branch = "remove_unsafe_std_env_set_var"
 
 [dependencies]
 near-sdk = { workspace = true, features = ["unstable"] }
 
 [dev-dependencies.cargo-near-build]
-version = "0.1.0"
-git = "https://github.com/near/cargo-near.git"
-branch = "extract_lib_with_eyre"
+version = "0.1.1"
+git = "https://github.com/dj8yfo/cargo-near.git"
+branch = "remove_unsafe_std_env_set_var"
 
 [dev-dependencies]
 near-sdk = { workspace = true, features = ["unit-testing"] }
