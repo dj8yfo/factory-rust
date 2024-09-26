@@ -757,8 +757,9 @@ dependencies = [
 
 [[package]]
 name = "cargo-near-build"
-version = "0.1.1"
-source = "git+https://github.com/dj8yfo/cargo-near.git?branch=remove_unsafe_std_env_set_var#17c9f5f13ffd7d603a564fa40b503a0fdb29c64a"
+version = "0.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "110e4e3b4dc5187c77581a49866018db00c1f4b1b108762aea203e1f35b14445"
 dependencies = [
  "bs58 0.5.1",
  "camino",
@@ -768,13 +769,13 @@ dependencies = [
  "eyre",
  "hex 0.4.3",
  "libloading 0.8.5",
+ "log",
  "near-abi",
  "rustc_version",
  "schemars",
  "serde_json",
  "sha2 0.10.8",
  "symbolic-debuginfo",
- "tracing",
  "zstd 0.13.2",
 ]
 
@@ -4694,9 +4695,9 @@ dependencies = [
 
 [[package]]
 name = "serde_spanned"
-version = "0.6.7"
+version = "0.6.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "eb5b1b31579f3811bf615c144393417496f152e12ac8b7663bf664f4a815306d"
+checksum = "87607cb1398ed59d48732e575a4c28a7a8ebf2454b964fe3f224f2afc07909e1"
 dependencies = [
  "serde",
 ]
