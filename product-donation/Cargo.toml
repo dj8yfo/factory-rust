@@ -12,9 +12,9 @@ crate-type = ["cdylib", "rlib"]
 # image from cargo-near pull#198
 [package.metadata.near.reproducible_build]
 # docker image, descriptor of build environment
-image = "dj8yfo/sourcescan:0.x.x-dev-git-pull-198"
+image = "sourcescan/cargo-near:git-e3c8adb4b5542cbfc159bb1534f2b94c900c1648-1.80.0"
 # tag after colon above serves only descriptive purpose; image is identified by digest
-image_digest = "sha256:7ca2f7ae14d00a4884c3231261b342bf0d1ea4903b81e16bf51ba11dca0f8467"
+image_digest = "sha256:4bbcdf985936e1cb9b71c627a00cb9b53546ac0c9ef6b175da2918c1dea21363"
 # build command inside of docker container 
 # if docker image from default gallery is used https://hub.docker.com/r/sourcescan/cargo-near/tags,
 # the command may be any combination of flags of `cargo-near`,
