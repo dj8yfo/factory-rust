@@ -1,11 +1,11 @@
 import? 'local.just'
 
 default_args := ''
-factory_contract := "repro-fct-56.testnet"
-child_deploy_signer := "child-deploy-signer-56.testnet"
+factory_contract := "repro-fct-57.testnet"
+child_deploy_signer := "child-deploy-signer-57.testnet"
 product_contract_name := "donation-product"
 product_from_factory_contract := product_contract_name + "." + factory_contract
-product_standalone_contract := "repro-fct-product-56.testnet"
+product_standalone_contract := "repro-fct-product-57.testnet"
 factory_call_payload := "{ \"name\": \"" + product_contract_name + "\", \"beneficiary\": \"donatello2.testnet\"}"
 
 [group('tempalte-create')]
@@ -54,14 +54,14 @@ _download_abi target:
 _git_cleanup:
     git clean -f .
 
-[group('download-wasm')]
-download_wasm_factory: && _git_cleanup
+[group('download-abi')]
+download_abi_factory: && _git_cleanup
     #!/usr/bin/env zsh
     just _download_abi {{ factory_contract }}
     bat --paging never {{ factory_contract }}.json
 
-[group('download-wasm')]
-download_wasm_product: && _git_cleanup
+[group('download-abi')]
+download_abi_product: && _git_cleanup
     #!/usr/bin/env zsh
     just _download_abi {{ product_from_factory_contract }}
     bat --paging never {{ product_from_factory_contract }}.json
