@@ -13,9 +13,10 @@ crate-type = ["cdylib", "rlib"]
 # image from sourcescan:latest
 # image from cargo-near pull#198
 [package.metadata.near.reproducible_build]
-image = "dj8yfo/sourcescan:0.x.x-dev-pr-remove-unsafe-exports"
+# image from cargo-near pull#198
+image = "dj8yfo/sourcescan:0.x.x-dev-pr-228"
 # tag after colon above serves only descriptive purpose; image is identified by digest
-image_digest = "sha256:4a45a917a835b714faa850a81f51e3c45b60f788a9f08ed99533e88a8c899a34"
+image_digest = "sha256:188ce10f85c2e57ed4bab3c174104bfa11591eebb55dff1915b56fd0f1919682"
 # build command inside of docker container 
 # if docker image from default gallery is used https://hub.docker.com/r/sourcescan/cargo-near/tags,
 # the command may be any combination of flags of `cargo-near`,

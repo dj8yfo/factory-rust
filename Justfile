@@ -1,6 +1,6 @@
 import? 'local.just'
 
-counter := '59'
+counter := '63'
 default_args := ''
 factory_contract := "repro-fct-" + counter + ".testnet"
 child_deploy_signer := "child-deploy-signer-" + counter + ".testnet"
