@@ -5,15 +5,18 @@ fn main() {
 
     let regular_build_opts = cargo_near_build::BuildOpts {
         no_default_features: true,
+        mute_env: vec![
+            // unix path of target contract from root of repo
+            (
+                cargo_near_build::env_keys::nep330::CONTRACT_PATH.into(),
+                "product-donation".into(),
+            ),
+        ],
         ..Default::default()
     };
 
     let opts = cargo_near_build::extended::BuildOptsExtended {
         workdir: "../product-donation",
-        env: vec![
-            // unix path of target contract from root of repo
-            (cargo_near_build::env_keys::nep330::CONTRACT_PATH, "product-donation")
-        ], 
         build_opts: regular_build_opts,
         build_script_opts: BuildScriptOpts {
             result_env_key: Some("BUILD_RS_SUB_BUILD_ARTIFACT_1"),
