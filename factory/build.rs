@@ -12,6 +12,7 @@ fn main() {
     let build_opts = BuildOpts::builder().no_default_features(true).build();
 
     let pwd = std::env::current_dir().expect("get pwd");
+    // a distinct target is needed to avoid deadlock during build
     let distinct_target = pwd.join("../target/build-rs-product-donation");
     let stub_path = pwd.join("../target/stub.bin");
 
