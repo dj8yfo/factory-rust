@@ -10,6 +10,7 @@ to:
    (create_factory_subaccount_and_deploy).
 2. Change the stored contract using the update_stored_contract method.
 
+
 ```rust
 #[payable]
     pub fn create_factory_subaccount_and_deploy(
