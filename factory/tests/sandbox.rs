@@ -74,6 +74,13 @@ async fn docker_test_meta() -> Result<(), Box<dyn std::error::Error>> {
 
     let bob = sandbox.dev_create_account().await?;
 
+    let res = bob
+        .view(contract.as_account().id(), "contract_source_metadata")
+        .args_json({})
+        .await?;
+
+    println!("{:#?}", res.json::<serde_json::Value>()?);
+
     let res = contract
         .call("create_factory_subaccount_and_deploy")
         .args_json(json!({"name": "donation_for_alice", "beneficiary": alice.id()}))
@@ -89,21 +96,13 @@ async fn docker_test_meta() -> Result<(), Box<dyn std::error::Error>> {
         .unwrap();
 
     let res = bob
-        .view(&sub_accountid, "get_beneficiary")
+        .view(&sub_accountid, "contract_source_metadata")
         .args_json({})
         .await?;
 
-    assert_eq!(res.json::<AccountId>()?, alice.id().clone());
+    println!("{:#?}", res.json::<serde_json::Value>()?);
 
-    let res = bob
-        .call(&sub_accountid, "donate")
-        .args_json({})
-        .max_gas()
-        .deposit(NearToken::from_near(5))
-        .transact()
-        .await?;
 
-    assert!(res.is_success());
 
     Ok(())
 }

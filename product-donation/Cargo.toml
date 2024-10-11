@@ -14,7 +14,7 @@ crate-type = ["cdylib", "rlib"]
 # image from cargo-near pull#198
 image = "dj8yfo/sourcescan:0.x.x-dev-pr-228"
 # tag after colon above serves only descriptive purpose; image is identified by digest
-image_digest = "sha256:743b6cada822ce42aef69cf0e3d011369730a2d5af605082265fedf0a595d744"
+image_digest = "sha256:771dbb530a148547613a74aff263646a1f8c38694bcd52a96aa89b1d38576459"
 # build command inside of docker container 
 # if docker image from default gallery is used https://hub.docker.com/r/sourcescan/cargo-near/tags,
 # the command may be any combination of flags of `cargo-near`,
