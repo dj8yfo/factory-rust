@@ -38,6 +38,7 @@ near-sdk = { workspace = true, features = ["unstable"] }
 
 [dev-dependencies.cargo-near-build]
 version = "0.1.1"
+features = ["docker"]
 git = "https://github.com/dj8yfo/cargo-near.git"
 rev = "1cfb2a9b0692d588dab69b4caf1703c47affc924"
 
