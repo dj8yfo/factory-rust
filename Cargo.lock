@@ -781,7 +781,7 @@ dependencies = [
 [[package]]
 name = "cargo-near-build"
 version = "0.1.1"
-source = "git+https://github.com/dj8yfo/cargo-near.git?branch=remove_unsafe_std_env_set_var#2785018209a83f5914e6c86079b59e60f6ced31e"
+source = "git+https://github.com/dj8yfo/cargo-near.git?rev=1cfb2a9b0692d588dab69b4caf1703c47affc924#1cfb2a9b0692d588dab69b4caf1703c47affc924"
 dependencies = [
  "bon",
  "bs58 0.5.1",
