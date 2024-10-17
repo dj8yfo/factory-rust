@@ -16,7 +16,7 @@ crate-type = ["cdylib", "rlib"]
 # image from cargo-near pull#198
 image = "dj8yfo/sourcescan:0.x.x-dev-pr-228"
 # tag after colon above serves only descriptive purpose; image is identified by digest
-image_digest = "sha256:771dbb530a148547613a74aff263646a1f8c38694bcd52a96aa89b1d38576459"
+image_digest = "sha256:35b35645c33d6271d06e339f7bfd1bfc276384e7285767a25c30506f4aeb3d03"
 # build command inside of docker container 
 # if docker image from default gallery is used https://hub.docker.com/r/sourcescan/cargo-near/tags,
 # the command may be any combination of flags of `cargo-near`,
@@ -28,19 +28,18 @@ env_logger = "0.9"
 log = "0.4"
 
 [build-dependencies.cargo-near-build]
-version = "0.1.1"
+version = "0.2.0"
 features = ["build_script"]
 git = "https://github.com/dj8yfo/cargo-near.git"
-rev = "a89cf6fbff0f5700810da2489114224c063ae721"
+rev = "973c4d86230036b1c6f4a3c0f15db16d9e0415ff"
 
 [dependencies]
 near-sdk = { workspace = true, features = ["unstable"] }
 
 [dev-dependencies.cargo-near-build]
-version = "0.1.1"
-features = ["docker"]
+version = "0.2.0"
 git = "https://github.com/dj8yfo/cargo-near.git"
-rev = "a89cf6fbff0f5700810da2489114224c063ae721"
+rev = "973c4d86230036b1c6f4a3c0f15db16d9e0415ff"
 
 [dev-dependencies]
 near-sdk = { workspace = true, features = ["unit-testing"] }
