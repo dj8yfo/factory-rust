@@ -1,12 +1,14 @@
 import? 'local.just'
 
 default_args := ''
-factory_contract := "repro-fct-71.testnet"
-child_deploy_signer := "child-deploy-signer-71.testnet"
+factory_contract := "repro-fct-73.testnet"
+child_deploy_signer := "child-deploy-signer-73.testnet"
 product_contract_name := "donation-product"
 product_from_factory_contract := product_contract_name + "." + factory_contract
-product_standalone_contract := "repro-fct-product-71.testnet"
+product_standalone_contract := "repro-fct-product-73.testnet"
 factory_call_payload := "{ \"name\": \"" + product_contract_name + "\", \"beneficiary\": \"donatello2.testnet\"}"
+
+export RUST_LOG := 'cargo_near=info'
 
 [group('tempalte-create')]
 _create_dev_acc target:

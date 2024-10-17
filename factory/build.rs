@@ -1,7 +1,7 @@
 use std::str::FromStr;
 
 use cargo_near_build::{bon, camino, extended};
-use cargo_near_build::{BuildImplicitEnvOpts, BuildOpts};
+use cargo_near_build::BuildOpts;
 
 fn main() {
     let _e = env_logger::Builder::new().parse_default_env().try_init();
@@ -17,13 +17,11 @@ fn main() {
     let build_opts = BuildOpts::builder()
         .no_default_features(true)
         .manifest_path(manifest)
+        .override_nep330_contract_path(nep330_contract_path)
+        // a distinct target is needed to avoid deadlock during build
+        .override_cargo_target_dir("../target/build-rs-product-donation")
         .build();
 
-    let build_implicit_env_opts = BuildImplicitEnvOpts::builder()
-        .nep330_contract_path(nep330_contract_path)
-        // a distinct target is needed to avoid deadlock during build
-        .cargo_target_dir("../target/build-rs-product-donation")
-        .build();
 
     let build_script_opts = extended::BuildScriptOpts::builder()
         .rerun_if_changed_list(bon::vec![workdir, "../Cargo.toml", "../Cargo.lock",])
@@ -38,7 +36,6 @@ fn main() {
 
     let extended_opts = extended::BuildOptsExtended::builder()
         .build_opts(build_opts)
-        .build_implicit_env_opts(build_implicit_env_opts)
         .build_script_opts(build_script_opts)
         .build();
 
