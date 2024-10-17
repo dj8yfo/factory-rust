@@ -28,18 +28,18 @@ env_logger = "0.9"
 log = "0.4"
 
 [build-dependencies.cargo-near-build]
-version = "0.1.1"
+version = "0.2.0"
 features = ["build_script"]
 git = "https://github.com/dj8yfo/cargo-near.git"
-branch = "remove_unsafe_std_env_set_var"
+rev = "973c4d86230036b1c6f4a3c0f15db16d9e0415ff"
 
 [dependencies]
 near-sdk = { workspace = true, features = ["unstable"] }
 
 [dev-dependencies.cargo-near-build]
-version = "0.1.1"
+version = "0.2.0"
 git = "https://github.com/dj8yfo/cargo-near.git"
-branch = "remove_unsafe_std_env_set_var"
+rev = "973c4d86230036b1c6f4a3c0f15db16d9e0415ff"
 
 [dev-dependencies]
 near-sdk = { workspace = true, features = ["unit-testing"] }
@@ -47,4 +47,3 @@ near-workspaces = { version = "0.10.0", features = ["unstable"] }
 tokio = { version = "1.12.0", features = ["full"] }
 serde_json = "1"
 env_logger = "0.9"
-
