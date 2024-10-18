@@ -11,6 +11,7 @@ const DONATION_DEFAULT_CONTRACT: &[u8] = include_bytes!(env!("BUILD_RS_SUB_BUILD
 const TGAS: Gas = Gas::from_tgas(1); // 10e12yⓃ
 const NO_DEPOSIT: NearToken = NearToken::from_near(0); // 0yⓃ
 
+
 // Define the contract structure
 #[near(contract_state)]
 pub struct Contract {
